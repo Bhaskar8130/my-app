@@ -11,9 +11,14 @@ phases:
     commands:
       - npm run build
       - ls -la
-      - ls -la dist
+      - ls -la build
 
   post_build:
     commands:
-      - echo "Deploying to S3"
-      - aws s3 sync dist/ s3://basu.work-space.co.in --delete
+      - echo "Deploying build folder to S3"
+      - aws s3 sync build/ s3://basu.work-space.co.in --delete
+
+artifacts:
+  base-directory: build
+  files:
+    - '**/*'
