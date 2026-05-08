@@ -15,4 +15,5 @@ phases:
 
   post_build:
     commands:
+      - echo "Deploying to S3"
       - aws s3 sync dist/ s3://basu.work-space.co.in --delete
